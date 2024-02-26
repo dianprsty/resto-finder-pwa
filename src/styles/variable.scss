@@ -1,0 +1,11 @@
+$primary-color: blueviolet;
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+$xlarge: 1200px;
+
+@mixin responsive($query) {
+  @media only screen and (min-width: $query) {
+    @content;
+  }
+}

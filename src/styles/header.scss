@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: $primary-color;
+  .inner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 32px;
+    position: sticky;
+    top: 0;
+
+    @include responsive($xlarge) {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 8px 0;
+    }
+  }
+
+  .header-logo {
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 32px;
+      font-weight: bold;
+    }
+  }
+
+  #hamburger {
+    font-size: 32px;
+    text-decoration: none;
+    color: white;
+  }
+
+  #drawer {
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    transform: translate(-250px, 0);
+    transition: transform 0.3s ease-in-out;
+    background-color: white;
+
+    #close-drawer {
+      font-size: 42px;
+      text-decoration: none;
+      color: black;
+      float: right;
+      padding: 16px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 60px 16px 0px;
+
+      li {
+        padding: 16px 0;
+        border-bottom: 1px solid gray;
+        a {
+          color: black;
+          text-decoration: none;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  @include responsive($small) {
+    #hamburger {
+      display: none;
+    }
+    #drawer {
+      position: static;
+      display: flex;
+      height: max-content;
+      width: max-content;
+      transform: translate(0, 0);
+
+      #close-drawer {
+        display: none;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        background-color: $primary-color;
+        padding: 0;
+
+        li {
+          a {
+            color: white;
+          }
+
+          &:hover {
+            border-bottom: 2px solid white;
+          }
+        }
+      }
+    }
+  }
+
+  #drawer.open {
+    transform: translate(0, 0);
+  }
+}

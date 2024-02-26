@@ -1,0 +1,12 @@
+.hero {
+  width: 100%;
+
+  @include responsive($xlarge) {
+    max-width: 1000px;
+    margin: 32px auto;
+  }
+
+  img {
+    width: 100%;
+  }
+}
