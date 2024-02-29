@@ -1,18 +1,17 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 header {
   background-color: $primary-color;
+  z-index: 99;
+
+  @include responsive($medium) {
+    position: sticky;
+    top: 0;
+  }
+
   .inner-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 32px;
-    position: sticky;
-    top: 0;
 
     @include responsive($xlarge) {
       max-width: 1000px;
@@ -42,36 +41,44 @@ header {
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 99;
 
     transform: translate(-250px, 0);
     transition: transform 0.3s ease-in-out;
     background-color: white;
 
-    #close-drawer {
-      font-size: 42px;
-      text-decoration: none;
-      color: black;
-      float: right;
-      padding: 16px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 20px 16px 0px;
     }
 
-    ul {
-      list-style: none;
-      padding: 60px 16px 0px;
+    li {
+      display: flex;
+      padding: 8px 0;
+      border-bottom: 1px solid gray;
+      flex-direction: row;
 
-      li {
-        padding: 16px 0;
-        border-bottom: 1px solid gray;
-        a {
-          color: black;
-          text-decoration: none;
-          font-size: 20px;
-        }
+      a {
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      #close-drawer {
+        display: inline-block;
+        font-size: 42px;
+        width: 100%;
+        text-align: right;
       }
     }
   }
 
-  @include responsive($small) {
+  @include responsive($medium) {
     #hamburger {
       display: none;
     }
@@ -82,18 +89,17 @@ header {
       width: max-content;
       transform: translate(0, 0);
 
-      #close-drawer {
-        display: none;
-      }
-
       ul {
-        display: flex;
         flex-direction: row;
         gap: 16px;
         background-color: $primary-color;
         padding: 0;
 
         li {
+          #close-drawer {
+            display: none;
+          }
+
           a {
             color: white;
           }

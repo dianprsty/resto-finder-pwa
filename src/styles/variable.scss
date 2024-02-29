@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+$font: "Montserrat", sans-serif;
 $primary-color: blueviolet;
-$small: 480px;
+$secondary-color: #ffd23f;
+$small: 576px;
 $medium: 768px;
-$large: 1024px;
+$large: 992px;
 $xlarge: 1200px;
 
 @mixin responsive($query) {

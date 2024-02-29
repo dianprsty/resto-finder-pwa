@@ -18,8 +18,10 @@
         </div>
         <a id="hamburger" href="#">☰</a>
         <nav id="drawer">
-          <a id="close-drawer" href="#">×</a>
           <ul>
+            <li>
+              <a id="close-drawer" href="#">×</a>
+            </li>
             <li><a href="/">Home</a></li>
             <li><a href="#">Favorite</a></li>
             <li>
@@ -32,13 +34,52 @@
       </div>
     </header>
     <main id="content">
-      <div class="hero">
-        <img
-          src="./images/heros/hero-image_4.jpg"
-          width=""
-          alt="cookies on the bowl"
-        />
-      </div>
+      <section class="hero">
+        <img src="./images/heros/hero-image_4.jpg" alt="cookies on the bowl" />
+      </section>
+      <section id="foods">
+        <h1>Explore Restaurant</h1>
+        <section class="foods-group"></section>
+      </section>
+      <section id="food-details">
+        <div class="left">
+          <img src="./images/heros/hero-image_4.jpg" alt="" />
+          <div class="food-info">
+            <button class="btn-favorite">
+              <img src="./images/icons/heart-outlined.svg" alt="heart icon" />
+            </button>
+            <p class="food-rating">
+              <img
+                class="star-rating"
+                src="./images/icons/star-fiiled.svg"
+                alt="star icon"
+              />
+              3.5
+            </p>
+            <p class="city-tag">Bandung</p>
+          </div>
+        </div>
+        <div class="right">
+          <p class="food-name">Bring Your Phone Cafe</p>
+          <p class="food-description">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+            imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
+            semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+            porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
+            ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
+            nulla ut metus varius laoreet.
+          </p>
+        </div>
+      </section>
     </main>
+    <footer>
+      <p>Copyright &copy; 2024 | Hunger Apps - By Dian Prasetyo</p>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font;
+  scroll-behavior: smooth;
+}
+
+a,
+button {
+  min-width: 44px;
+  min-height: 44px;
+}
