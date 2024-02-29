@@ -14,10 +14,13 @@
     align-items: start;
   }
 
-  @include responsive($xlarge) {
+  @include responsive($large) {
+    padding: 16px 48px;
     max-width: 1000px;
-    padding: 16px 0;
     margin: 60px auto;
+  }
+  @include responsive($xlarge) {
+    padding: 16px 0;
   }
 
   .left {
