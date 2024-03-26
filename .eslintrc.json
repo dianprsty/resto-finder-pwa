@@ -11,6 +11,12 @@
     },
     "rules": {
         "quotes": "off",
-        "import/no-extraneous-dependencies":"off"
+        "import/no-extraneous-dependencies":"off",
+        "no-console": "off",
+        "no-underscore-dangle": "off",
+        "no-restricted-globals": "off",
+        "linebreak-style": "off",
+        "class-methods-use-this":"off",
+        "no-unused-vars":"warn"
     }
 }
