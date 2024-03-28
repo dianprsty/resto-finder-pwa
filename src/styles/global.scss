@@ -11,3 +11,9 @@ button {
   min-width: 44px;
   min-height: 44px;
 }
+
+body {
+  min-height: 100dvh;
+  position: relative;
+  padding-bottom: 48px;
+}
