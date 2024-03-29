@@ -32,6 +32,58 @@ class RestaurantDetail extends HTMLElement {
     return drinkList;
   }
 
+  inputGroupCreator(fieldType, fieldAbout) {
+    const inputGroup = document.createElement("div");
+    inputGroup.classList.add("input-group");
+
+    const label = document.createElement("label");
+    label.htmlFor = fieldAbout;
+    label.innerHTML = fieldAbout.toUpperCase();
+
+    let input;
+    if (fieldType === "input") {
+      input = document.createElement("input");
+      input.type = "text";
+      input.name = fieldAbout;
+      input.id = fieldAbout;
+      input.required = true;
+    }
+
+    if (fieldType === "textarea") {
+      input = document.createElement("textarea");
+      input.name = fieldAbout;
+      input.id = fieldAbout;
+      input.required = true;
+      input.rows = 4;
+    }
+
+    inputGroup.appendChild(label);
+    inputGroup.appendChild(input);
+
+    return inputGroup;
+  }
+
+  renderForms(id) {
+    const inputName = this.inputGroupCreator("input", "name");
+    const inputReview = this.inputGroupCreator("textarea", "review");
+    const button = document.createElement("button");
+    button.innerText = "Send Review";
+    button.type = "submit";
+    const idInput = document.createElement("input");
+    idInput.value = id;
+    idInput.type = "hidden";
+
+    const form = document.createElement("form");
+    form.id = "submit-review";
+
+    form.appendChild(inputName);
+    form.appendChild(inputReview);
+    form.appendChild(idInput);
+    form.appendChild(button);
+
+    return form.outerHTML;
+  }
+
   renderReviews() {
     let reviewList = "";
     this.#restaurant.customerReviews.forEach((review) => {
@@ -89,7 +141,8 @@ class RestaurantDetail extends HTMLElement {
         <div class="review-container">
           <div class="review-form">
             <h2>Post a Review</h2>
-            <div class="review-form-container"></div>
+            <div class="review-form-container">
+            ${this.renderForms(this.#restaurant.id)}</div>
           </div>
           <div class="review-list">
             <h2>Customers Review</h2>
