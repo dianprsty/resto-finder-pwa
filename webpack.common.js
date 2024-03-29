@@ -57,6 +57,13 @@ module.exports = {
             cacheName: "restoid-api",
           },
         },
+        {
+          urlPattern: ({ url }) => url.href.startsWith("https://fonts.googleapis.com/"),
+          handler: "StaleWhileRevalidate",
+          options: {
+            cacheName: "google-font",
+          },
+        },
       ],
     }),
   ],
