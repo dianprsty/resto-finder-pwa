@@ -26,20 +26,35 @@ const LikeButtonInitiator = {
   _renderLike() {
     this._likeButtonContainer.src = "./images/icons/heart-outlined.svg";
 
-    const likeButton = document.querySelector(".icon-favorite");
-    likeButton.addEventListener("click", async () => {
+    const iconLike = document.getElementById("icon-favorite");
+    const likeButton = document.getElementById("btn-favorite");
+    iconLike.addEventListener("click", async () => {
       await FavoriteRestoIdb.putResto(this._resto);
       this._renderButton();
+    });
+    likeButton.addEventListener("keypress", async (event) => {
+      if (event.key === "Enter") {
+        await FavoriteRestoIdb.putResto(this._resto);
+        this._renderButton();
+      }
     });
   },
 
   _renderLiked() {
     this._likeButtonContainer.src = "./images/icons/heart-solid.svg";
 
-    const likeButton = document.querySelector(".icon-favorite");
-    likeButton.addEventListener("click", async () => {
+    const iconLike = document.getElementById("icon-favorite");
+    const likeButton = document.getElementById("btn-favorite");
+    iconLike.addEventListener("click", async () => {
       await FavoriteRestoIdb.deleteResto(this._resto.id);
       this._renderButton();
+    });
+
+    likeButton.addEventListener("keypress", async (event) => {
+      if (event.key === "Enter") {
+        await FavoriteRestoIdb.deleteResto(this._resto.id);
+        this._renderButton();
+      }
     });
   },
 };

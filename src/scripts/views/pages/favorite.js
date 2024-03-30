@@ -11,9 +11,7 @@ const Favorite = {
   `;
   },
   async afterRender() {
-    // Todo
     const restaurants = await FavoriteRestoIdb.getAllRestos();
-    console.log(restaurants);
     const foodsGroup = document.querySelector(".foods-group");
 
     const emptyFavoriteElement = document.createElement("p");

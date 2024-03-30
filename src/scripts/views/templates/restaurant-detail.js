@@ -89,7 +89,7 @@ class RestaurantDetail extends HTMLElement {
     this.#restaurant.customerReviews.reverse().forEach((review) => {
       reviewList += `<div class="review-card">
         <div class="profile-picture">
-          <img src="./images/user_placeholder.avif" alt="customer ${review.name}" >
+          <img src="./images/user_placeholder.avif" alt="customer ${review.name}" crossorigin="anonymous" >
         </div>
         <div class="review-detail">
           <p class="customer-name">${review.name}</p>
@@ -105,10 +105,13 @@ class RestaurantDetail extends HTMLElement {
     this.innerHTML = `<div class="left">
           <img src="${
   CONFIG.BASE_IMAGE_URL_LARGE + this.#restaurant.pictureId
-}" alt="${this.#restaurant.name}" />
+}" alt="${this.#restaurant.name}" crossorigin="anonymous" />
           <div class="food-info">
-            <button class="btn-favorite">
-              <img src="./images/icons/heart-outlined.svg" alt="favorite button" class="icon-favorite" />
+            <button class="btn-favorite" id="btn-favorite">
+              <img src="./images/icons/heart-outlined.svg"
+                   alt="favorite button" class="icon-favorite"
+                   id="icon-favorite"
+                   crossorigin="anonymous" />
             </button>
             <p class="food-rating">
               <img

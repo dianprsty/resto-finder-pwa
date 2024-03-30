@@ -17,12 +17,13 @@ class RestaurantCard extends HTMLElement {
       <img
         src="${CONFIG.BASE_IMAGE_URL_MEDIUM + this.#restaurant.pictureId}"
         alt="image of ${this.#restaurant.name}"
+        crossorigin="anonymous"
       />
     </div>
     <div class="card-body">
       <h2 class="food-name">${this.#restaurant.name}</h2>
       <p class="food-rating">
-        <img class="star-rating" src="./images/icons/star-fiiled.svg" alt="star rating" />
+        <img class="star-rating" src="./images/icons/star-fiiled.svg" alt="star rating" crossorigin="anonymous" />
         ${this.#restaurant.rating}
       </p>
       <p class="food-description">

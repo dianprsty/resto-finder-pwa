@@ -10,6 +10,7 @@ const Home = {
         <img
           src="./images/heros/hero-image_4.jpg"
           alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon besade the bowl"
+          crossorigin="anonymous"
         />
       </section>
       <section id="foods">
