@@ -22,8 +22,16 @@ class App {
   async renderPage() {
     const url = urlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
+
     this._content.innerHTML = await page.render();
     await page.afterRender();
+
+    const skipToContent = document.getElementById("skip-link");
+    const mainContent = document.getElementById("content");
+    skipToContent.addEventListener("click", (event) => {
+      event.preventDefault();
+      mainContent.focus();
+    });
   }
 }
 

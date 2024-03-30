@@ -19,14 +19,6 @@ window.addEventListener("hashchange", () => {
 });
 
 window.addEventListener("load", () => {
-  const skipToContent = document.getElementById("skip-link");
-  const mainContent = document.getElementById("content");
-
   app.renderPage();
   swRegister();
-
-  skipToContent.addEventListener("keypress", (event) => {
-    event.preventDefault();
-    mainContent.focus();
-  });
 });
