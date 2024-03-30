@@ -7,7 +7,6 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "src/scripts/index.js"),
-    // sw: path.resolve(__dirname, "src/scripts/sw.js"),
   },
   output: {
     filename: "[name].bundle.js",
@@ -47,24 +46,9 @@ module.exports = {
         },
       ],
     }),
-    new WorkboxWebpackPlugin.GenerateSW({
+    new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       swDest: "./sw.bundle.js",
-      runtimeCaching: [
-        {
-          urlPattern: ({ url }) => url.href.startsWith("https://restaurant-api.dicoding.dev/"),
-          handler: "StaleWhileRevalidate",
-          options: {
-            cacheName: "restoid-api",
-          },
-        },
-        {
-          urlPattern: ({ url }) => url.href.startsWith("https://fonts.googleapis.com/"),
-          handler: "StaleWhileRevalidate",
-          options: {
-            cacheName: "google-font",
-          },
-        },
-      ],
     }),
   ],
 };

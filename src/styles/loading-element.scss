@@ -1,0 +1,10 @@
+.loading-container{
+
+  .loading-element{
+    width: 48px;
+    height: 48px;
+    background-color: black;
+    border: 4px solid $primary-color;
+    border-right: 4px solid $accent-color;
+  }
+}

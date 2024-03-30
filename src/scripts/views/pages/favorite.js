@@ -16,6 +16,14 @@ const Favorite = {
     console.log(restaurants);
     const foodsGroup = document.querySelector(".foods-group");
 
+    const emptyFavoriteElement = document.createElement("p");
+    emptyFavoriteElement.classList.add("empty-indicator");
+    emptyFavoriteElement.innerText = "You don't have favorite restaurant yet!";
+
+    if (restaurants.length === 0) {
+      foodsGroup.appendChild(emptyFavoriteElement);
+    }
+
     restaurants.forEach((resto) => {
       const restaurantCard = document.createElement("restaurant-card");
       restaurantCard.restaurant = resto;

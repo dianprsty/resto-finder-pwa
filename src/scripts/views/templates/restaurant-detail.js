@@ -86,7 +86,7 @@ class RestaurantDetail extends HTMLElement {
 
   renderReviews() {
     let reviewList = "";
-    this.#restaurant.customerReviews.forEach((review) => {
+    this.#restaurant.customerReviews.reverse().forEach((review) => {
       reviewList += `<div class="review-card">
         <div class="profile-picture">
           <img src="./images/user_placeholder.avif" alt="customer ${review.name}" >
@@ -123,8 +123,8 @@ class RestaurantDetail extends HTMLElement {
         </div>
         <div class="right">
           <h1 class="food-name">${this.#restaurant.name}</h1>
-          <p class="food-address">Address : ${this.#restaurant.address}
           <div class="category-container">${this.renderCategories()}</div>
+          <p class="food-address">Address : ${this.#restaurant.address}
           <p class="food-description">${this.#restaurant.description}
           </p>
         </div>

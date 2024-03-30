@@ -11,39 +11,60 @@ const Detail = {
   `;
   },
   async afterRender() {
-    // Todo
-    const url = UrlParser.parseActiveUrlWithoutCombiner();
-    const { restaurant } = await RestaurantSource.detailRestaurant(url.id);
+    const foodDetail = document.querySelector("#food-details");
 
-    this.renderDataToElement(restaurant);
+    const loadingIndicator = document.createElement("loading-indicator");
+    const RefreshButton = document.createElement("refresh-button");
+    RefreshButton.eventListener = () => {
+      foodDetail.removeChild(RefreshButton);
+      this.afterRender();
+    };
 
-    LikeButtonInitiator.init({
-      likeButtonContainer: document.querySelector(".icon-favorite"),
-      resto: {
-        ...restaurant,
-      },
-    });
+    let restaurant;
 
-    const submitReviewForm = document.getElementById("submit-review");
-    submitReviewForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    try {
+      foodDetail.appendChild(loadingIndicator);
+      const url = UrlParser.parseActiveUrlWithoutCombiner();
+      const data = await RestaurantSource.detailRestaurant(url.id);
 
-      try {
-        const name = event.target[0].value;
-        const review = event.target[1].value;
-        const id = event.target[2].value;
+      restaurant = data.restaurant;
+      this.renderDataToElement(restaurant);
 
-        const { customerReviews } = await RestaurantSource.addReview({ id, name, review });
-        const foodDetail = document.querySelector("#food-details");
-        foodDetail.innerHTML = "";
+      LikeButtonInitiator.init({
+        likeButtonContainer: document.querySelector(".icon-favorite"),
+        resto: {
+          ...restaurant,
+        },
+      });
 
-        restaurant.customerReviews = customerReviews;
+      const submitReviewForm = document.getElementById("submit-review");
+      submitReviewForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-        this.renderDataToElement(restaurant);
-      } catch (error) {
-        console.log(error);
-      }
-    });
+        try {
+          const name = event.target[0].value;
+          const review = event.target[1].value;
+          const id = event.target[2].value;
+
+          const { customerReviews } = await RestaurantSource.addReview({
+            id,
+            name,
+            review,
+          });
+          foodDetail.innerHTML = "";
+
+          restaurant.customerReviews = customerReviews;
+
+          this.renderDataToElement(restaurant);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    } catch (error) {
+      foodDetail.appendChild(RefreshButton);
+    } finally {
+      foodDetail.removeChild(loadingIndicator);
+    }
   },
 
   renderDataToElement(restaurant) {

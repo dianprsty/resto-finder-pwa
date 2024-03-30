@@ -16,4 +16,10 @@ body {
   min-height: 100dvh;
   position: relative;
   padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+
+  main{
+    flex: 1;
+  }
 }

@@ -1,5 +1,7 @@
 import RestaurantSource from "../../data/restaurant-data";
 import "../templates/restaurant-card";
+import "../templates/loading-indicator";
+import "../templates/refresh-button";
 
 const Home = {
   async render() {
@@ -17,14 +19,28 @@ const Home = {
   `;
   },
   async afterRender() {
-    const restaurants = await RestaurantSource.listRestaurant();
-
     const foodsGroup = document.querySelector(".foods-group");
-    restaurants.forEach((resto) => {
-      const restaurantCard = document.createElement("restaurant-card");
-      restaurantCard.restaurant = resto;
-      foodsGroup.appendChild(restaurantCard);
-    });
+    const loadingIndicator = document.createElement("loading-indicator");
+    const RefreshButton = document.createElement("refresh-button");
+    RefreshButton.eventListener = () => {
+      foodsGroup.removeChild(RefreshButton);
+      this.afterRender();
+    };
+
+    try {
+      foodsGroup.appendChild(loadingIndicator);
+      const restaurants = await RestaurantSource.listRestaurant();
+
+      restaurants.forEach((resto) => {
+        const restaurantCard = document.createElement("restaurant-card");
+        restaurantCard.restaurant = resto;
+        foodsGroup.appendChild(restaurantCard);
+      });
+    } catch (error) {
+      foodsGroup.appendChild(RefreshButton);
+    } finally {
+      foodsGroup.removeChild(loadingIndicator);
+    }
   },
 };
 
