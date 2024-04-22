@@ -22,7 +22,7 @@ fs.readdirSync(target).forEach((image) => {
 
   // mengubah ukuran gambar dengan lebar 360px, dengan prefix -small.jpg
   sharp(`${target}/${image}`)
-    .resize(360)
+    .resize(480)
     .toFile(
       path.resolve(
         __dirname,
