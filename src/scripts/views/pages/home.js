@@ -7,11 +7,13 @@ const Home = {
   async render() {
     return `
       <section class="hero">
-        <img
-          src="./images/heros/hero-image_4.jpg"
-          alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon besade the bowl"
-          crossorigin="anonymous"
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcset="./images/heros/hero-small.jpg">
+          <img src='./images/heros/hero-large.jpg'
+            alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon besade the bowl"
+            crossorigin="anonymous"
+          >
+        </picture>
       </section>
       <section id="foods">
         <h1>Explore Restaurant</h1>

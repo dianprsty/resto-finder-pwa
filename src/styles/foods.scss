@@ -99,6 +99,7 @@
         width: 100%;
         object-fit: contain;
         img {
+          aspect-ratio: inherit;
           width: 100%;
         }
       }
