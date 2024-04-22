@@ -35,8 +35,13 @@
       width: 40%;
     }
 
-    img {
+    .food-detail-image{
+      min-height: 200px;
       width: 100%;
+
+          img {
+            width: 100%;
+          }
     }
 
     .food-info {

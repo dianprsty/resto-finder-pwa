@@ -59,11 +59,11 @@ module.exports = {
     new ImageminWebpackPlugin({
       plugins: [
         ImageminMozjpeg({
-          quality: 50,
+          quality: 20,
           progressive: true,
         }),
       ],
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 };

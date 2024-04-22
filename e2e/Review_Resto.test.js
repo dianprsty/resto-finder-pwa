@@ -1,9 +1,9 @@
 const assert = require("assert");
 
-Feature("Liking Resto");
+Feature("Review Resto");
 
 Before(({ I }) => {
-  I.amOnPage("/#/favorite");
+  I.amOnPage("/");
 });
 
 Scenario("showing empty liked restos", ({ I }) => {

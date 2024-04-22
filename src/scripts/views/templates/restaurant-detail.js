@@ -103,10 +103,14 @@ class RestaurantDetail extends HTMLElement {
 
   render() {
     this.innerHTML = `<div class="left">
-          <img class="lazyload" data-sizes="auto"
-          data-src="${
-  CONFIG.BASE_IMAGE_URL_MEDIUM+ this.#restaurant.pictureId
-}" alt="${this.#restaurant.name}" crossorigin="anonymous" />
+          <div class="food-detail-image">
+            <img class="lazyload" data-sizes="auto"
+            data-src="${CONFIG.BASE_IMAGE_URL_MEDIUM + this.#restaurant.pictureId}"
+            alt="${this.#restaurant.name}" crossorigin="anonymous"
+            width=400px
+            height=250px
+            />
+          </div>
           <div class="food-info">
             <button class="btn-favorite" id="btn-favorite">
               <img src="./images/icons/heart-outlined.svg"
