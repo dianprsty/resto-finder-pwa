@@ -8,11 +8,17 @@
       name="description"
       content="This is Restaurant Web which is built for dicoding front-end expert class' submission "
     />
-    <meta name="theme-color" content="#8A2BE2">
+    <meta name="theme-color" content="#8A2BE2" />
 
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="manifest" href="./app.webmanifest">
-    <link rel="icon" href="./favicon.png" type="image/x-icon">
+    <link
+      rel="preload"
+      as="image"
+      imagesrcset="./images/heros/hero-large.jpg, ./images/heros/hero-small.jpg 600w"
+      imagesizes="(max-width: 600px) 100vw, 600px"
+    />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="manifest" href="./app.webmanifest" />
+    <link rel="icon" href="./favicon.png" type="image/x-icon" />
     <title>Resto Id</title>
   </head>
   <body>
@@ -36,8 +42,7 @@
         </nav>
       </div>
     </header>
-    <main id="content" tabindex="0">
-    </main>
+    <main id="content" tabindex="0"></main>
     <footer>
       <p>Copyright &copy; 2024 | Resto Id - By Dian Prasetyo</p>
     </footer>
