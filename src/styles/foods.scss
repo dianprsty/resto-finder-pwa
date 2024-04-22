@@ -97,9 +97,9 @@
 
       .card-image {
         width: 100%;
+        min-height: 210px;
         object-fit: contain;
         img {
-          aspect-ratio: inherit;
           width: 100%;
         }
       }

@@ -15,9 +15,12 @@ class RestaurantCard extends HTMLElement {
     </div>
     <div class="card-image">
       <img
-        src="${CONFIG.BASE_IMAGE_URL_MEDIUM + this.#restaurant.pictureId}"
+        class="lazyload"
+        data-src="${CONFIG.BASE_IMAGE_URL_MEDIUM + this.#restaurant.pictureId}"
         alt="image of ${this.#restaurant.name}"
         crossorigin="anonymous"
+        width=312px
+        height=210px
       />
     </div>
     <div class="card-body">
