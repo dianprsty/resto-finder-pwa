@@ -1,6 +1,6 @@
 import RestaurantSource from "../../data/restaurant-data";
 import UrlParser from "../../routes/url-parser";
-import LikeButtonInitiator from "../../utils/like-button-initiator";
+import LikeButtonPresenter from "../../utils/like-button-presenter";
 import "../templates/restaurant-detail";
 
 const Detail = {
@@ -30,8 +30,8 @@ const Detail = {
       restaurant = data.restaurant;
       this.renderDataToElement(restaurant);
 
-      LikeButtonInitiator.init({
-        likeButtonContainer: document.querySelector(".icon-favorite"),
+      LikeButtonPresenter.init({
+        likeButtonContainer: document.querySelector(".btn-favorite"),
         resto: {
           ...restaurant,
         },

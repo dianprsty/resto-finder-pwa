@@ -109,9 +109,9 @@ class RestaurantDetail extends HTMLElement {
           <div class="food-info">
             <button class="btn-favorite" id="btn-favorite">
               <img src="./images/icons/heart-outlined.svg"
-                   alt="favorite button" class="icon-favorite"
-                   id="icon-favorite"
-                   crossorigin="anonymous" />
+                  alt="favorite button" class="icon-favorite"
+                  id="icon-favorite"
+                  crossorigin="anonymous" />
             </button>
             <p class="food-rating">
               <img

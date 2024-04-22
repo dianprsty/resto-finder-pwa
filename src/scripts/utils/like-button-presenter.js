@@ -1,6 +1,7 @@
 const { default: FavoriteRestoIdb } = require("../data/favorite-resto-idb");
 
-const LikeButtonInitiator = {
+const LikeButtonPreseter = {
+
   async init({ likeButtonContainer, resto }) {
     this._likeButtonContainer = likeButtonContainer;
     this._resto = resto;
@@ -12,9 +13,9 @@ const LikeButtonInitiator = {
     const { id } = this._resto;
 
     if (await this._isRestoExist(id)) {
-      this._renderLiked();
+      this._renderLikedRestoButton();
     } else {
-      this._renderLike();
+      this._renderNotLikedRestoButton();
     }
   },
 
@@ -23,16 +24,15 @@ const LikeButtonInitiator = {
     return !!resto;
   },
 
-  _renderLike() {
-    this._likeButtonContainer.src = "./images/icons/heart-outlined.svg";
+  _renderNotLikedRestoButton() {
+    this._likeButtonContainer.setAttribute("aria-label", "like this resto");
+    this._likeButtonContainer.firstElementChild.setAttribute("src", "./images/icons/heart-outlined.svg");
 
-    const iconLike = document.getElementById("icon-favorite");
-    const likeButton = document.getElementById("btn-favorite");
-    iconLike.addEventListener("click", async () => {
+    this._likeButtonContainer.addEventListener("click", async () => {
       await FavoriteRestoIdb.putResto(this._resto);
       this._renderButton();
     });
-    likeButton.addEventListener("keypress", async (event) => {
+    this._likeButtonContainer.addEventListener("keypress", async (event) => {
       if (event.key === "Enter") {
         await FavoriteRestoIdb.putResto(this._resto);
         this._renderButton();
@@ -40,17 +40,16 @@ const LikeButtonInitiator = {
     });
   },
 
-  _renderLiked() {
-    this._likeButtonContainer.src = "./images/icons/heart-solid.svg";
+  _renderLikedRestoButton() {
+    this._likeButtonContainer.setAttribute("aria-label", "unlike this resto");
+    this._likeButtonContainer.firstElementChild.setAttribute("src", "./images/icons/heart-solid.svg");
 
-    const iconLike = document.getElementById("icon-favorite");
-    const likeButton = document.getElementById("btn-favorite");
-    iconLike.addEventListener("click", async () => {
+    this._likeButtonContainer.addEventListener("click", async () => {
       await FavoriteRestoIdb.deleteResto(this._resto.id);
       this._renderButton();
     });
 
-    likeButton.addEventListener("keypress", async (event) => {
+    this._likeButtonContainer.addEventListener("keypress", async (event) => {
       if (event.key === "Enter") {
         await FavoriteRestoIdb.deleteResto(this._resto.id);
         this._renderButton();
@@ -59,4 +58,4 @@ const LikeButtonInitiator = {
   },
 };
 
-export default LikeButtonInitiator;
+export default LikeButtonPreseter;
