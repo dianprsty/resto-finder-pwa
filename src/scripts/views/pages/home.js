@@ -9,11 +9,9 @@ const Home = {
       <section class="hero">
         <picture>
           <source media="(max-width: 600px)"
-            class="lazyload" data-sizes="auto"
-            data-srcset="./images/heros/hero-small.jpg"
+            srcset="./images/heros/hero-small.jpg"
             crossorigin="anonymous">
-          <img class="lazyload" data-sizes="auto"
-            data-src='./images/heros/hero-large.jpg'
+          <img src='./images/heros/hero-large.jpg'
             alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon besade the bowl"
             crossorigin="anonymous"
           >

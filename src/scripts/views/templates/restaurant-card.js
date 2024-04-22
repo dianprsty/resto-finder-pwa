@@ -26,7 +26,9 @@ class RestaurantCard extends HTMLElement {
     <div class="card-body">
       <h2 class="food-name">${this.#restaurant.name}</h2>
       <p class="food-rating">
-        <img class="star-rating" src="./images/icons/star-fiiled.svg" alt="star rating" crossorigin="anonymous" />
+        <img class="star-rating" src="./images/icons/star-fiiled.svg"
+        alt="star rating" crossorigin="anonymous"
+        width=18px height=18px />
         ${this.#restaurant.rating}
       </p>
       <p class="food-description">
