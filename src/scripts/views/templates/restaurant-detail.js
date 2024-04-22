@@ -103,8 +103,9 @@ class RestaurantDetail extends HTMLElement {
 
   render() {
     this.innerHTML = `<div class="left">
-          <img src="${
-  CONFIG.BASE_IMAGE_URL_LARGE + this.#restaurant.pictureId
+          <img class="lazyload" data-sizes="auto"
+          data-src="${
+  CONFIG.BASE_IMAGE_URL_MEDIUM+ this.#restaurant.pictureId
 }" alt="${this.#restaurant.name}" crossorigin="anonymous" />
           <div class="food-info">
             <button class="btn-favorite" id="btn-favorite">
