@@ -10,7 +10,7 @@
 
   @include responsive($xlarge) {
     max-width: 1000px;
-    min-height: 666px;
+    height: 666px;
     margin: 32px auto;
 
     img{

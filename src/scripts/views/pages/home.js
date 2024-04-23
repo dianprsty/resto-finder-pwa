@@ -5,14 +5,36 @@ import "../templates/refresh-button";
 
 const Home = {
   async render() {
+    let listSkeleton = "";
+    for (let i = 0; i < 10; i += 1) {
+      listSkeleton += `
+      <article class="food-card">
+        <div class="card-image skeleton">
+        </div>
+        <div class="card-body">
+          <p class="skeleton skeleton-text"></p>
+          <p class="skeleton skeleton-text-small"></p>
+          <div class="food-description">
+            <p class="skeleton skeleton-text"></p>
+            <p class="skeleton skeleton-text"></p>
+            <p class="skeleton skeleton-text"></p>
+          </div>
+          <p class="skeleton skeleton-button"></p>
+
+        </div>
+      </article>`;
+    }
     return `
       <section class="hero">
         <picture>
           <source media="(max-width: 600px)"
             srcset="./images/heros/hero-small.jpg"
             crossorigin="anonymous">
-          <img src='./images/heros/hero-large.jpg'
-            alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon besade the bowl"
+          <source
+            srcset="./images/heros/hero-large.jpg"
+            crossorigin="anonymous">
+          <img src='./images/heros/hero.jpg'
+            alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon beside the bowl"
             crossorigin="anonymous"
             width=800px height=533px
           >
@@ -20,13 +42,12 @@ const Home = {
       </section>
       <section id="foods">
         <h1>Explore Restaurant</h1>
-        <section class="foods-group"></section>
+        <section class="foods-group">${listSkeleton}</section>
       </section>
   `;
   },
   async afterRender() {
     const foodsGroup = document.querySelector(".foods-group");
-    const loadingIndicator = document.createElement("loading-indicator");
     const RefreshButton = document.createElement("refresh-button");
     RefreshButton.eventListener = () => {
       foodsGroup.removeChild(RefreshButton);
@@ -34,9 +55,8 @@ const Home = {
     };
 
     try {
-      foodsGroup.appendChild(loadingIndicator);
       const restaurants = await RestaurantSource.listRestaurant();
-
+      foodsGroup.innerHTML = '';
       restaurants.forEach((resto) => {
         const restaurantCard = document.createElement("restaurant-card");
         restaurantCard.restaurant = resto;
@@ -44,8 +64,6 @@ const Home = {
       });
     } catch (error) {
       foodsGroup.appendChild(RefreshButton);
-    } finally {
-      foodsGroup.removeChild(loadingIndicator);
     }
   },
 };
