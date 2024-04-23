@@ -19,7 +19,7 @@ class RestaurantCard extends HTMLElement {
         data-src="${CONFIG.BASE_IMAGE_URL_SMALL + this.#restaurant.pictureId}"
         alt="image of ${this.#restaurant.name}"
         crossorigin="anonymous"
-        width=312px
+        width=320px
         height=210px
       />
     </div>
