@@ -1,5 +1,3 @@
-const assert = require("assert");
-
 Feature("Review Resto");
 
 Before(({ I }) => {

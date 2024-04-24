@@ -36,7 +36,6 @@ const Home = {
             alt="three cookies on the bowl and one cookie outside the bowl. there are yellow flowers and three slice lemon beside the bowl"
             crossorigin="anonymous"
             width=800px height=533px
-            onerror="this.onerror=null;this.parentNode.children[0].srcset='./images/heros/hero.jpg';this.src='./images/heros/hero.jpg';"
           >
         </picture>
       </section>
