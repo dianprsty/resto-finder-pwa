@@ -69,6 +69,7 @@ class RestaurantDetail extends HTMLElement {
     const button = document.createElement("button");
     button.innerText = "Send Review";
     button.type = "submit";
+    button.id = "submit-button";
     const idInput = document.createElement("input");
     idInput.value = id;
     idInput.type = "hidden";

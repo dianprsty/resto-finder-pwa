@@ -9,6 +9,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
+const withReport = !!process.env.npm_config_withReport;
+
 module.exports = {
   entry: {
     app: path.resolve(__dirname, "src/scripts/index.js"),
@@ -72,7 +74,6 @@ module.exports = {
         }),
       ],
     }),
-    // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin(),
-  ],
+  ].concat(withReport ? [new BundleAnalyzerPlugin()] : []),
 };
