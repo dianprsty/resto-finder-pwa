@@ -6,66 +6,48 @@ Before(({ I }) => {
   I.amOnPage("/");
 });
 
-Scenario("showing empty liked restos", ({ I }) => {
-  I.seeElement(".empty-indicator");
-  I.see("You don't have favorite restaurant yet!", ".empty-indicator");
+Scenario("showing resto detail page", async ({ I }) => {
+  I.seeElement(".food-card");
+
+  const totalResto = await I.grabNumberOfVisibleElements(".food-card");
+  const restoIndex = Math.ceil(Math.random() * totalResto);
+
+  const choosenRestoNameElement = locate(".food-name").at(restoIndex);
+  const choosenRestoName = await I.grabTextFrom(choosenRestoNameElement);
+
+  const choosenRestoDetailButton = locate(".food-card a").at(restoIndex);
+  I.click(choosenRestoDetailButton);
+
+  I.seeElement(".restaurant-detail");
+  I.dontSeeElement(".refresh-button");
+  I.see(choosenRestoName, ".food-name");
 });
 
-Scenario("liking one resto", async ({ I }) => {
-  I.seeElement(".empty-indicator");
-  I.see("You don't have favorite restaurant yet!", ".empty-indicator");
-
-  I.amOnPage("/");
-  I.waitForElement(".food-name", 5);
+Scenario("give review to a resto", async ({ I }) => {
   I.seeElement(".food-card");
 
-  const firstRestoNameElement = locate(".food-name").first();
-  const fisrtRestoNameText = await I.grabTextFrom(firstRestoNameElement);
+  const totalResto = await I.grabNumberOfVisibleElements(".food-card");
+  const restoIndex = Math.ceil(Math.random() * totalResto);
 
-  const firstRestoDetailButton = locate(".food-card a").first();
-  I.click(firstRestoDetailButton);
+  const choosenRestoNameElement = locate(".food-name").at(restoIndex);
+  const choosenRestoName = await I.grabTextFrom(choosenRestoNameElement);
 
-  I.waitForElement("#btn-favorite", 5);
-  I.seeElement("#btn-favorite");
-  I.click("#btn-favorite");
+  const choosenRestoDetailButton = locate(".food-card a").at(restoIndex);
+  I.click(choosenRestoDetailButton);
 
-  I.amOnPage("/#/favorite");
-  I.dontSee("You don't have favorite restaurant yet!");
-  I.seeElement(".food-card");
-  const LikedRestoName = await I.grabTextFrom(".food-name");
+  I.seeElement(".restaurant-detail");
+  I.dontSeeElement(".refresh-button");
+  I.see(choosenRestoName, ".food-name");
+  I.seeElement(".review-form-container");
 
-  assert.strictEqual(fisrtRestoNameText, LikedRestoName);
-});
+  const stringTimeStamp = Date.now().toString();
+  const customerName = `Name ${stringTimeStamp}`;
+  const customerReview = `${choosenRestoName} is very good ${stringTimeStamp}`;
 
-Scenario("unliking one resto", async ({ I }) => {
-  I.seeElement(".empty-indicator");
-  I.see("You don't have favorite restaurant yet!", ".empty-indicator");
+  I.fillField("name", customerName);
+  I.fillField("review", customerReview);
+  I.click("#submit-button");
 
-  I.amOnPage("/");
-  I.seeElement(".food-card");
-
-  const firstRestoDetailButton = locate(".food-card a").first();
-  I.click(firstRestoDetailButton);
-
-  I.waitForElement("#btn-favorite", 5);
-  I.seeElement("#btn-favorite");
-  I.click("#btn-favorite");
-
-  I.amOnPage("/#/favorite");
-  I.dontSee("You don't have favorite restaurant yet!");
-  I.seeElement(".food-card");
-
-  const likedRestoNameElement = locate(".food-name").first();
-  const likedRestoName = await I.grabTextFrom(likedRestoNameElement);
-
-  const likedRestoDetailButton = locate(".food-card a").first();
-  I.click(likedRestoDetailButton);
-
-  I.waitForElement(".food-name", 5);
-  I.see(likedRestoName, ".food-name");
-  I.seeElement("#btn-favorite");
-  I.click("#btn-favorite");
-
-  I.amOnPage("/#/favorite");
-  I.dontSee(likedRestoName);
+  I.see(customerName, ".customer-name");
+  I.see(customerReview, ".review-content");
 });
